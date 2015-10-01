@@ -1,0 +1,15 @@
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+ul.list-separated li {
+	border-bottom: 1px dotted lighten(black, 70%);
+	padding: 10px 0 10px 0;
+	cursor: pointer;
+}
+
+ul.list-separated li:last-child {
+	border-bottom: 0px solid white;
+}

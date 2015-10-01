@@ -1,0 +1,59 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="alert alert-warning" role="alert">Budget Alert Here</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<select class="form-control">
+				<option>Current Month</option>
+			</select>
+		</div>
+	</div>
+	<div class="row" ng-controller="MainCtrl">
+		<div class="col-xs-12">
+			<h4>Total Monthly Spend to Date</h4>
+			<h1>{{ billTotal | currency }}</h1>
+			<h5>Projected Monthly Spend to Date</h5>
+			<h4>$104,650.00</h4>
+		</div>
+	</div>
+	<div class="row" ng-controller="ApplicationCtrl">
+		<div class="col-xs-12">
+			<h3>Top 3 Applications</h3>
+			<ul class="list-separated">
+				<li ng-repeat="application in applications | limitTo: 3">
+					<div class="row" ng-click="showApplicationDetails(application.id)">
+						<div class="col-xs-9">
+							<div>{{ application.name }}</a></div>
+							<div>{{ application.cost.current | currency }}</div>
+						</div>
+						<div class="col-xs-3 text-right"> > </div>						
+					</div>
+				</li>
+			</ul>
+			<div><a ui-sref="applications">View All Applications</a></div>
+		</div>
+	</div>
+	<div class="row" ng-controller="ProviderCtrl">
+		<div class="col-xs-12">
+			<h3>Providers</h3>
+			<ul class="list-separated">
+				<li ng-repeat="provider in providerBillTotals">
+					<div class="row" ng-click="showProviderDetails(provider.id)">
+						<div class="col-xs-3">{{ provider.thumbnail }}</div>
+						<div class="col-xs-6">
+							<div>{{ provider.name }}</div>
+							<div>{{ provider.billTotal | currency }}</div>
+						</div>
+						<div class="col-xs-3 text-right">
+							>
+						</div>
+					</div>
+				</li>
+				
+			</ul>
+		</div>
+	</div>
+</div>

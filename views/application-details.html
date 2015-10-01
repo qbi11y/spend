@@ -1,0 +1,334 @@
+<div class="page-wrapper">
+        <section class="container">
+
+            <div class="row">
+                <ol class="col-xs-12 breadcrumb">
+                    <li><a ui-sref="dashboard">Dashboard</a></li>
+                </ol>
+            </div>
+            <!--<p class="lead">Use this document as a way to quickly start any new project.</p>-->
+
+            <ul class="list-inline list-unstyled">
+                <li>
+                    <h1>{{ application.name }}</h1>
+                </li>
+                <li>
+                    <h3>Small Text</h3>
+                </li>
+            </ul>
+            <h3>List Item Information</h3>
+            <div class="row">
+                <div class="col-xs-3">
+                    <dl class="dl-horizontal">
+                        <dt>Key</dt>
+                        <dd><a>Value</a></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                    </dl>
+                </div>
+                <div class="col-xs-3">
+                    <dl class="dl-horizontal">
+                        <dt>Key</dt>
+                        <dd><a>Value</a></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                    </dl>
+                </div>
+                <div class="col-xs-6">
+
+                    <ul class="list-unstyled list-inline">
+                        <li class="pull-right">
+                            <div class="dropdown pull-right">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="btnItemActions1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span>Item Actions</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="pull-right hidden-xs"><a class="btn btn-link">Action 3</a></li>
+                        <li class="pull-right hidden-xs"><a class="btn btn-link">Action 2</a></li>
+                        <li class="pull-right hidden-xs"><a class="btn btn-link">Action 1</a></li>
+                    </ul>
+
+                </div>
+            </div>
+
+
+
+            <h2 class="border-bottom">Detail Section (100%)</h2>
+            <div class="row">
+                <div class="col-sm-6">
+                    <!--#region View Mode-->
+                    <!-- ngIf: !$root.editMode --><h4 ng-if="!$root.editMode" class="ng-scope">Left Subsection<a ng-click="$root.editMode = true" class="pull-right"><i class="fa fa-edit"></i></a></h4><!-- end ngIf: !$root.editMode -->
+                    <!-- ngIf: !$root.editMode --><dl ng-if="!$root.editMode" class="dl-horizontal ng-scope">
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Really Long Key</dt>
+                        <dd>Really Long Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                    </dl><!-- end ngIf: !$root.editMode -->
+                    <!--#endregion-->
+                    <!--#region Edit Mode-->
+                    <!-- ngIf: $root.editMode == true -->
+                    <!-- ngIf: $root.editMode == true -->
+                    <!--#endregion-->
+                </div>
+                <div class="col-sm-6">
+                    <h4>Right Subsection<a class="pull-right"><i class="fa fa-edit"></i></a></h4>
+                    <dl class="dl-horizontal">
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                    </dl>
+                </div>
+            </div>
+
+            <h2 class="border-bottom">Detail Section (100%)<a class="pull-right small text-primary"><i class="fa fa-edit"></i></a></h2>
+            <div class="row">
+                <div class="col-sm-6">
+                    <dl class="dl-horizontal">
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                    </dl>
+                </div>
+                <div class="col-sm-6">
+                    <dl class="dl-horizontal">
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                        <dt>Key</dt>
+                        <dd>Value</dd>
+                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <h2 class="border-bottom">Detail Section (66%)</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam iaculis iaculis turpis id facilisis. Donec non tellus in libero convallis maximus. Nunc tortor nulla, sodales in ullamcorper a, pellentesque quis massa. Morbi risus nulla, malesuada et leo eget, sodales fringilla ligula. Pellentesque volutpat sem eros, nec hendrerit mauris vehicula aliquam. Nunc faucibus diam quis ex facilisis, ut malesuada est mollis. Nullam consectetur ac risus nec sagittis. Morbi scelerisque ullamcorper gravida. Nam eu elit posuere, placerat nulla ac, blandit metus.</p>
+                </div>
+                <div class="col-sm-4">
+                    <h2 class="border-bottom">Detail Section (33%)</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam iaculis iaculis turpis id facilisis. Donec non tellus in libero convallis maximus. Nunc tortor nulla, sodales in ullamcorper a, pellentesque quis massa. Morbi risus nulla, malesuada et leo eget, sodales fringilla ligula. Pellentesque volutpat sem eros, nec hendrerit mauris vehicula aliquam. Nunc faucibus diam quis ex facilisis, ut malesuada est mollis. Nullam consectetur ac risus nec sagittis. Morbi scelerisque ullamcorper gravida. Nam eu elit posuere, placerat nulla ac, blandit metus.</p>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 class="border-bottom">Services</h2>
+
+                    <h4>
+                        <span class="collapsed" role="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa fa-angle-down collapsed-hide"></i>
+                            <i class="fa fa-angle-right collapsed-show"></i>
+                            &nbsp;<span>VDC</span>
+                        </span>
+                    </h4>
+                    <div class="collapse" id="collapseExample">
+                        <div class="well">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <a>My VDC</a>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                            60%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div><strong>Amazon Elastic Compute Cloud</strong></div>
+                                    <div>Amazon</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <a>My VDC</a>
+                                </div>
+                                <div class="col-sm-4">
+                                    <span class="text-success pull-right progress-icon"><i class="fa fa-check-circle-o"></i></span>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                                            100%
+                                        </div>
+                                    </div>
+                                    <div class="progress-text">
+                                        <strong>Complete</strong>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div><strong>Amazon Elastic Compute Cloud</strong></div>
+                                    <div>Amazon</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <a>My VDC</a>
+                                </div>
+                                <div class="col-sm-4">
+                                    <span class="text-danger pull-right progress-icon"><i class="fa fa-times-circle-o"></i></span>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                            60%
+                                        </div>
+                                    </div>
+                                    <div class="progress-text">
+                                        <strong>In Progress:</strong> <span>Waiting for User Information</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div><strong>Amazon Elastic Compute Cloud</strong></div>
+                                    <div>Amazon</div>
+                                </div>
+                            </div> 
+                            
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <a>My VDC</a>
+                                </div>
+                                <div class="col-sm-4">
+                                    <span class="text-warning pull-right progress-icon"><i class="fa fa-warning"></i></span>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                            60%
+                                        </div>
+                                    </div>
+                                    <div class="progress-text">
+                                        <strong>In Progress:</strong> <span>Waiting for User Information</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div><strong>Amazon Elastic Compute Cloud</strong></div>
+                                    <div>Amazon</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <br>
+            <br>
+            <br>
+
+            <!-- Delete confirmation Modal -->
+            <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <h4 class="modal-title" id="confirmationModalLabel">Delete Confirmation</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Confirmation Text Here</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit  Modal -->
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <h4 class="modal-title" id="editModalLabel">Edit Item</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Edit Form Here</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+        <footer>
+            <div class="container">
+                <ul class="list-unstyled list-inline">
+                    <li class="pull-right">
+                        <img src="images/powered_by_gravitant.png" alt="footer logo">
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </div>

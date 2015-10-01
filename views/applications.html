@@ -1,0 +1,18 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>Applications</h1>
+			<ul class="list-separated">
+				<li ng-repeat="application in applications">
+					<div class="row" ng-click="showApplicationDetails(application.id)">
+						<div class="col-xs-9">
+							<div>{{ application.name }}</a></div>
+							<div>{{ application.cost.current | currency }}</div>
+						</div>
+						<div class="col-xs-3 text-right"> > </div>						
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
