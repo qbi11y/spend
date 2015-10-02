@@ -2,6 +2,119 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<h1>Applications</h1>
+			<div>
+            <div class="well well-sm">
+                <form class="form-inline clearfix">
+
+                    <div class="form-group">
+                        <label class="control-label" for="optionList">Sort By</label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="dropdown" id="optionList">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="Button3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Option 1 
+                               
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Application</a></li>
+                                <li><a href="#">Cost</a></li>
+                                <li><a href="#">Provider</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#sectionFilter" aria-expanded="false" aria-controls="sectionFilter"><i class="fa fa-filter"></i>Filter</button>
+                    </div>
+
+
+                    <div class="form-group pull-right">
+
+                        <div class="dropdown pull-right">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Page Actions
+                               
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <form id="sectionFilter" class="collapse">
+                <div class="well form-horizontal">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="sampleInput1" class="col-sm-4 control-label text-left">Field 1</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="sampleInput1" placeholder="Filter Value" ng-model="data.filter1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="sampleInput2" class="col-sm-4 control-label text-left">Field 2</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="sampleInput2" placeholder="Filter Value" ng-model="data.filter2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul class="list-unstyled list-inline text-right">
+                                <li>
+                                    <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#sectionFilter">Close</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn btn-default" ng-click="actions.clearFilters()">Clear Filters</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#sectionFilter" ng-click="actions.updateFilter()">Apply Filters</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div ng-if="data.filterItems.length > 0">
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="list-unstyled list-inline">
+                            <li>
+                                <label>Filters </label>
+                            </li>
+                            <li ng-repeat="filter in data.filterItems">
+                                <button type="button" class="btn btn-xs btn-primary" ng-click="actions.removeFilter(filter)">{{filter.filterValue}}&nbsp;<i class="fa fa-times-circle"></i></button></li>
+                            <li>
+                                <button type="button" class="btn btn-link btn-xs" ng-click="actions.clearFilters()">Clear Filters</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="horizontal-divider"></div>
+                <br />
+            </div>
+        </div>
 			<ul class="list-separated">
 				<li ng-repeat="application in applications">
 					<div class="row" ng-click="showApplicationDetails(application.id)">

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" ng-controller="MainCtrl">
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="alert alert-warning" role="alert">Budget Alert Here</div>
@@ -6,54 +6,92 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
-			<select class="form-control">
-				<option>Current Month</option>
-			</select>
+			<div class="btn-group btn-group-justified" role="group" aria-label="...">
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-default" ng-class="{'active': dashboardView == 'overview'}" ng-click="updateDashboard('overview', this)">Overview</button>
+				</div>
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-default" ng-class="{'active': dashboardView == 'org'}" ng-click="updateDashboard('org', this)">Organization</button>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="row" ng-controller="MainCtrl">
-		<div class="col-xs-12">
-			<h4>Total Monthly Spend to Date</h4>
-			<h1>{{ billTotal | currency }}</h1>
-			<h5>Projected Monthly Spend to Date</h5>
-			<h4>$104,650.00</h4>
+	
+	
+	<div class="row">
+		<!--
+		<div class="col-xs-12 bar">
+			<div class="bar-stacked green">Group 1 adfvsdfivsergsdfvsdv sojdfoslnesnrl</div>
+			<div class="bar-stacked orange">Grljnnsernvoeurfnr;nerfsenrfunse</div>
+			<div class="bar-stacked red">Group 3 sdhfsalslfjknksf</div>
+			<div class="bar-stacked blue">Group 4 sdjf;sjn</div>
+			<div class="bar-stacked grey">Group 5asdnf</div>
+			<div class="bar-stacked purple">Grou</div>
+			<div class="bar-stacked brown">Gr</div>
+		</div>
+		-->
+		<!--
+		<div id="piechart" style="width:100%; height:400px;"></div>
+		-->
+	</div>
+	<div ng-show="dashboardView == 'overview'">
+		<div class="row" ng-controller="MainCtrl">
+			<div class="col-xs-12">
+				<h4>Total Monthly Spend to Date</h4>
+				<h1>{{ billTotal | currency }}</h1>
+				<h5>Projected Monthly Spend to Date</h5>
+				<h4>$104,650.00</h4>
+			</div>
+		</div>
+		<div class="row" ng-controller="ApplicationCtrl">
+			<div class="col-xs-12">
+				<h3>Applications Over Budget</h3>
+				<ul class="list-separated">
+					<li ng-repeat="application in applications | limitTo: 3">
+						<div class="row" ng-click="showApplicationDetails(application.id)">
+							<div class="col-xs-9">
+								<div>{{ application.name }}</a></div>
+								<div>{{ application.cost.current | currency }} <span class="text-danger"><i class="fa fa-arrow-up"></i>+150%</span></div>
+							</div>
+							<div class="col-xs-3 text-right"> > </div>						
+						</div>
+					</li>
+				</ul>
+				<div><a ui-sref="applications">View All Applications</a></div>
+			</div>
+		</div>
+		<div class="row" ng-controller="ProviderCtrl">
+			<div class="col-xs-12">
+				<h3>Providers</h3>
+				<ul class="list-separated">
+					<li ng-repeat="provider in providerBillTotals">
+						<div class="row" ng-click="showProviderDetails(provider.id)">
+							<div class="col-xs-3">{{ provider.thumbnail }}</div>
+							<div class="col-xs-6">
+								<div>{{ provider.name }}</div>
+								<div>{{ provider.billTotal | currency }}</div>
+							</div>
+							<div class="col-xs-3 text-right">
+								>
+							</div>
+						</div>
+					</li>
+					
+				</ul>
+			</div>
 		</div>
 	</div>
-	<div class="row" ng-controller="ApplicationCtrl">
-		<div class="col-xs-12">
-			<h3>Top 3 Applications</h3>
-			<ul class="list-separated">
-				<li ng-repeat="application in applications | limitTo: 3">
-					<div class="row" ng-click="showApplicationDetails(application.id)">
-						<div class="col-xs-9">
-							<div>{{ application.name }}</a></div>
-							<div>{{ application.cost.current | currency }}</div>
-						</div>
-						<div class="col-xs-3 text-right"> > </div>						
-					</div>
-				</li>
-			</ul>
-			<div><a ui-sref="applications">View All Applications</a></div>
-		</div>
-	</div>
-	<div class="row" ng-controller="ProviderCtrl">
-		<div class="col-xs-12">
-			<h3>Providers</h3>
-			<ul class="list-separated">
-				<li ng-repeat="provider in providerBillTotals">
-					<div class="row" ng-click="showProviderDetails(provider.id)">
-						<div class="col-xs-3">{{ provider.thumbnail }}</div>
-						<div class="col-xs-6">
-							<div>{{ provider.name }}</div>
-							<div>{{ provider.billTotal | currency }}</div>
-						</div>
-						<div class="col-xs-3 text-right">
-							>
-						</div>
-					</div>
-				</li>
-				
-			</ul>
+
+	<div ng-show="dashboardView == 'org'">
+		<div class="row">
+			<div class="col-xs-12">View By
+				<select class="form-control" ng-model="orgView" ng-init="orgView = 'application'" >
+					<option value="application">Application</option>
+					<option value="environment">Environment</option>
+					<option value="architecture">Architectural Layer</option>
+
+				</select>
+			</div>
 		</div>
 	</div>
 </div>

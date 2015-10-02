@@ -2,10 +2,11 @@ var app = angular.module('Data', []);
 
 app.factory('Data', function() {
 	var billTotal = 0;
-	var providerBillTotals = []
+	var providerBillTotals = [];
 
 	return {
 		getBillTotal: function(bills) {
+			billTotal = 0;
 			for (var n=0; n < bills.length; n++) {
 				billTotal += bills[n].cost.actual
 			}
@@ -13,6 +14,7 @@ app.factory('Data', function() {
 		},
 
 		getProviderBillTotals: function(providers, bills) {
+			providerBillTotals = [];
 			for (var n=0; n < providers.length; n++) {
 				var providerBillTotal = 0;
 				for (var i=0; i < bills.length; i++) {
@@ -27,6 +29,10 @@ app.factory('Data', function() {
 				providerBillTotals.push(provider);
 			}
 			return providerBillTotals;
+		},
+
+		setProviderBillTotals: function() {
+			providerBillTotals = [];
 		}
 	}
 	

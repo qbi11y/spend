@@ -16,3 +16,52 @@ ul.list-separated li {
 ul.list-separated li:last-child {
   border-bottom: 0px solid white;
 }
+
+/* line 17, ../sass/main-styles.scss */
+.bar div {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 23, ../sass/main-styles.scss */
+.green {
+  background-color: green;
+  color: green;
+}
+
+/* line 28, ../sass/main-styles.scss */
+.red {
+  background-color: red;
+  color: red;
+}
+
+/* line 33, ../sass/main-styles.scss */
+.blue {
+  background-color: blue;
+  color: blue;
+}
+
+/* line 38, ../sass/main-styles.scss */
+.purple {
+  background-color: purple;
+  color: purple;
+}
+
+/* line 43, ../sass/main-styles.scss */
+.brown {
+  background-color: brown;
+  color: brown;
+}
+
+/* line 48, ../sass/main-styles.scss */
+.orange {
+  background-color: orange;
+  color: orange;
+}
+
+/* line 53, ../sass/main-styles.scss */
+.grey {
+  background-color: gray;
+  color: gray;
+}

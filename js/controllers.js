@@ -1,12 +1,21 @@
 var app = angular.module('Controllers',['Applications', 'Providers', 'Spend', 'Bills', 'Data']);
 
-app.controller('MainCtrl', ['$scope', 'Bills', 'Data', function($scope, Bills, Data) {
-	$scope.bills = Bills.getBills();
+app.controller('MainCtrl', ['$scope', 'Bills', 'Data', 'Providers', function($scope, Bills, Data, Providers) {
+	$scope.bills = Providers.getBills();
 	$scope.billTotal = Data.getBillTotal($scope.bills);
+	$scope.dashboardView = 'overview';
+	$scope.updateDashboard = function(view) {
+		if (view == 'org') {
+			$scope.dashboardView = 'org';
+			$('#overview').removeClass('active');
+			$('#org').addClass('active');
+		} else {
+			$scope.dashboardView = 'overview';
+		}
+	}
 }])
 
 app.controller('ApplicationCtrl', ['$scope', '$state', 'Applications', function($scope, $state, Applications) {
-	console.log(Applications.getApplications());
 	$scope.applications = Applications.getApplications();
 	$scope.showApplicationDetails = function(appID) {
 		console.log(appID);
@@ -15,16 +24,13 @@ app.controller('ApplicationCtrl', ['$scope', '$state', 'Applications', function(
 }]);
 
 app.controller('ApplicationDetailsCtrl', ['$scope', '$stateParams', '$state', 'Applications', function($scope, $stateParams, $state, Applications) {
-	console.log('applciation details', $stateParams);
 	console.log(Applications.getApplication($stateParams.id));
 	$scope.application = Applications.getApplication($stateParams.id);
 }])
 
 app.controller('ProviderCtrl', ['$scope', '$state', 'Providers', 'Data', 'Bills', function($scope, $state, Providers, Data, Bills) {
-	console.log(Providers.getProviders());
-	$scope.providers = Providers.getProviders();
+	Data.setProviderBillTotals();
 	$scope.providerBillTotals = Data.getProviderBillTotals(Providers.getProviders(), Bills.getBills());
-	console.log($scope.providerBillTotals);
 	$scope.showProviderDetails = function(providerID) {
 		$state.go("providerDetails", {id: providerID})
 	}

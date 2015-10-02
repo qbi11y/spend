@@ -4,7 +4,7 @@ app.factory('Applications', function() {
 	var applications = 
 	[
 		{
-			name: 'Some Application',
+			name: 'SharePoint',
 			id: 1,
 			owner: {
 				firstName: 'John',
@@ -30,7 +30,7 @@ app.factory('Applications', function() {
 			}
 		},
 		{
-			name: 'Some Other Application',
+			name: 'Wordpress',
 			id: 2,
 			owner: {
 				firstName: 'John',
@@ -56,7 +56,7 @@ app.factory('Applications', function() {
 			}
 		},
 		{
-			name: 'Last Application',
+			name: 'Microsoft Exchange',
 			id: 3,
 			owner: {
 				firstName: 'John',
@@ -82,7 +82,7 @@ app.factory('Applications', function() {
 			}
 		},
 		{
-			name: 'Last Application',
+			name: 'PeopleSoft',
 			id: 3,
 			owner: {
 				firstName: 'John',
@@ -108,7 +108,7 @@ app.factory('Applications', function() {
 			}
 		},
 		{
-			name: 'Last Application',
+			name: 'ADP',
 			id: 3,
 			owner: {
 				firstName: 'John',
@@ -134,7 +134,7 @@ app.factory('Applications', function() {
 			}
 		},
 		{
-			name: 'Last Application',
+			name: 'Hadoop',
 			id: 3,
 			owner: {
 				firstName: 'John',
