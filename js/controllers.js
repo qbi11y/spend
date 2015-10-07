@@ -1,8 +1,9 @@
 var app = angular.module('Controllers',['Applications', 'Providers', 'Spend', 'Bills', 'Data']);
 
 app.controller('MainCtrl', ['$scope', 'Bills', 'Data', 'Providers', function($scope, Bills, Data, Providers) {
-	$scope.bills = Providers.getBills();
-	$scope.billTotal = Data.getBillTotal($scope.bills);
+	//	console.log(Providers.getBills());
+	//$scope.bills = Providers.getConsolidatedBills();
+	//$scope.billTotal = Data.getBillTotal($scope.bills);
 	$scope.dashboardView = 'overview';
 	$scope.updateDashboard = function(view) {
 		if (view == 'org') {
@@ -24,7 +25,7 @@ app.controller('ApplicationCtrl', ['$scope', '$state', 'Applications', function(
 }]);
 
 app.controller('ApplicationDetailsCtrl', ['$scope', '$stateParams', '$state', 'Applications', function($scope, $stateParams, $state, Applications) {
-	console.log(Applications.getApplication($stateParams.id));
+	window.scrollTo(0,0);
 	$scope.application = Applications.getApplication($stateParams.id);
 }])
 

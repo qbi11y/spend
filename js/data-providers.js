@@ -8,7 +8,7 @@ app.factory('Providers', function() {
 			name: 'Amazon',
 			id: 1,
 			account: 608263488029,
-			thumbnail: 'path here',
+			thumbnail: 'http://res.cloudinary.com/gravitant/image/upload/v1428597587/providers/amazonaws.jpg',
 			bills: 
 			[
 				{
@@ -148,6 +148,22 @@ app.factory('Providers', function() {
 			]
 		}
 	]
+
+	var getProviderBills = function(provider) {
+		switch (provider) {
+			case 'amazon':
+				for (var n=0; n < providers.length; n++) {
+					if (provider == 'amazon') {
+						return providers[n].bills;
+					}
+				}
+				break;
+		}
+	}
+
+	var calculateAmazonLinkedAccounts = function() {
+
+	}
 	
 
 
@@ -159,11 +175,14 @@ app.factory('Providers', function() {
 
 
 	return {
-		getBills: function() {
+		getConsolidatedBills: function() {
 			for (var n=0; n < providers.length; n++) {
-
+				if (data == providers[n].id) {
+					return providers[n];
+				}
 			}
-		}
+			return getProviderBills('amazon')
+		},
 		getProviders: function() {
 			return providers;
 		},

@@ -1,3 +1,11 @@
+body {
+	background-color: #eeeeee;
+}
+
+hr {
+	border-color: #cccccc;
+}
+
 ul {
 	list-style: none;
 	padding: 0;
@@ -14,6 +22,28 @@ ul.list-separated li:last-child {
 	border-bottom: 0px solid white;
 }
 
+.data-row {
+	background-color: white;
+	-webkit-box-shadow: 0 1px 1px 1px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  	box-shadow:         0 1px 1px 1px #ccc;
+}
+
+.data-row-lg {	
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.data-row-sm {	
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	margin-bottom: 10px;
+	padding: 12px 0;
+}
+
+.data-row-sm img {
+	width: 100%;
+	max-width: 100px;
+}
 .bar div {
 	display: inline-block;
 	margin: 0;

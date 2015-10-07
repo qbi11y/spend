@@ -13,7 +13,7 @@ app.factory('Applications', function() {
 				phone: '512-555-1212'
 			},
 			cost: {
-				current: 12345.45
+				current: 27543.45
 			},
 			infrastructure: {
 				storage: {
