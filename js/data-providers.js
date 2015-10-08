@@ -9,6 +9,27 @@ app.factory('Providers', function() {
 			id: 1,
 			account: 608263488029,
 			thumbnail: 'http://res.cloudinary.com/gravitant/image/upload/v1428597587/providers/amazonaws.jpg',
+			applications: 
+			[
+				{
+					name: 'SharePoint',
+					id: 1,
+					cost: 12345.54,
+					change: 16
+				},
+				{
+					name: 'WordPress',
+					id: 2,
+					cost: 4545.54,
+					change: -5
+				},
+				{
+					name: 'MS Exchange',
+					id: 3,
+					cost: 45567.54,
+					change: 7
+				}
+			],
 			bills: 
 			[
 				{

@@ -13,19 +13,23 @@
                     <h1>{{ provider.name }}</h1>
                 </li>
                 <li>
-                    <h3>Small Text</h3>
+                    <h3>October 2015</h3>
+                </li>
+                <li>
+                   <h5>Comparisons are relative to previous month</h5> 
                 </li>
             </ul>
-            <h3>List Item Information</h3>
+            
+            <h3>Summary</h3>
             <div class="row">
                 <div class="col-xs-3">
                     <dl class="dl-horizontal">
-                        <dt>Key</dt>
-                        <dd><a>Value</a></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
+                        <dt>Storage</dt>
+                        <dd><a>2.75 TB</a></dd>
+                        <dt>Data Transfer</dt>
+                        <dd>8.65 TB</dd>
+                        <dt>Total Spend</dt>
+                        <dd>$43,345.76</dd>
                     </dl>
                 </div>
                 <div class="col-xs-3">
@@ -57,113 +61,32 @@
                         </li>
                         <li class="pull-right hidden-xs"><a class="btn btn-link">Action 3</a></li>
                         <li class="pull-right hidden-xs"><a class="btn btn-link">Action 2</a></li>
-                        <li class="pull-right hidden-xs"><a class="btn btn-link">Action 1</a></li>
+                        <li class="pull-right hidden-xs"><a class="btn btn-link">Generate Report</a></li>
                     </ul>
 
                 </div>
             </div>
+        
 
-
-
-            <h2 class="border-bottom">Detail Section (100%)</h2>
-            <div class="row">
-                <div class="col-sm-6">
-                    <!--#region View Mode-->
-                    <!-- ngIf: !$root.editMode --><h4 ng-if="!$root.editMode" class="ng-scope">Left Subsection<a ng-click="$root.editMode = true" class="pull-right"><i class="fa fa-edit"></i></a></h4><!-- end ngIf: !$root.editMode -->
-                    <!-- ngIf: !$root.editMode --><dl ng-if="!$root.editMode" class="dl-horizontal ng-scope">
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Really Long Key</dt>
-                        <dd>Really Long Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                    </dl><!-- end ngIf: !$root.editMode -->
-                    <!--#endregion-->
-                    <!--#region Edit Mode-->
-                    <!-- ngIf: $root.editMode == true -->
-                    <!-- ngIf: $root.editMode == true -->
-                    <!--#endregion-->
-                </div>
-                <div class="col-sm-6">
-                    <h4>Right Subsection<a class="pull-right"><i class="fa fa-edit"></i></a></h4>
+            <h2 class="border-bottom">Applications</h2>
+            <h5>Comparisons are relative to previous month</h5>
+            <div class="row data-row data-row-lg">
+                <div class="col-sm-6"  ng-repeat="app in applications" ng-click="showApplicationDetails(app.id, provider.id)">
                     <dl class="dl-horizontal">
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
+                        <dt>{{ app.name }}</dt>
+                        <dd>{{ app.cost | currency }} <span><i class="fa fa-arrow-up" ng-show="app.change > 0"></i><i class="fa fa-arrow-down" ng-show="app.change < 0"></i></span>{{ app.change }}%</dd>
                         <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
                     </dl>
                 </div>
             </div>
 
-            <h2 class="border-bottom">Detail Section (100%)<a class="pull-right small text-primary"><i class="fa fa-edit"></i></a></h2>
-            <div class="row">
-                <div class="col-sm-6">
+            <h2 class="border-bottom">Accounts</h2>
+            <h5>Comparisons are relative to previous month</h5>
+            <div class="row data-row data-row-lg">
+                <div class="col-sm-6"  ng-repeat="account in accounts">
                     <dl class="dl-horizontal">
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                    </dl>
-                </div>
-                <div class="col-sm-6">
-                    <dl class="dl-horizontal">
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
+                        <dt>{{ account.account }}</dt>
+                        <dd>{{ account.charges | currency }}</dd>
                         <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
                     </dl>
                 </div>

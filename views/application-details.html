@@ -3,7 +3,9 @@
 
             <div class="row">
                 <ol class="col-xs-12 breadcrumb">
-                    <li><a ui-sref="dashboard">Dashboard</a></li>
+                    <li ng-if="backPage == 'dashboard'"><a ui-sref="dashboard">Dashboard</a></li>
+                    <li ng-if="backPage == 'applications'"><a ui-sref="applications">Applications</a></li>
+                    <li ng-if="backPage != 'dashboard' && backPage != 'applications'"><a ui-sref="providerDetails({ id: backPage.id })">{{ backPage.name }}</a></li>
                 </ol>
             </div>
             <!--<p class="lead">Use this document as a way to quickly start any new project.</p>-->

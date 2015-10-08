@@ -19,7 +19,7 @@ $(function () {
             type: 'areaspline'
         },
         title: {
-            text: 'Estimate Budget vs Actual Budget'
+            text: 'Estimate Charges vs Actual Charges'
         },
         legend: {
             layout: 'vertical',

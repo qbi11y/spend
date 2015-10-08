@@ -3,6 +3,7 @@ var app = angular.module('Data', []);
 app.factory('Data', function() {
 	var billTotal = 0;
 	var providerBillTotals = [];
+	var backPage = '';
 
 	return {
 		getBillTotal: function(bills) {
@@ -33,8 +34,16 @@ app.factory('Data', function() {
 
 		setProviderBillTotals: function() {
 			providerBillTotals = [];
+		},
+
+		setBackPage: function(data) {
+			backPage = data;
+		},
+
+		getBackPage: function() {
+			return backPage;
 		}
-	}
+ 	}
 	
 })
 

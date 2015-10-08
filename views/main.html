@@ -42,29 +42,29 @@
 		</div>
 		<div class="row data-row data-row-lg" ng-controller="MainCtrl">
 			<div class="col-xs-12">
-				<h4>Actual Spend to Date</h4>
+				<h4>Actual Charges to Date</h4>
 				<h1>$75,654 <span class="text-danger"><i class="fa fa-arrow-up"></i>+44%</span></h1>
 				<!--<h1>{{ billTotal | currency }}</h1>-->
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-6">
-				<h5><strong>Proj. Spend to Date</strong></h5>
+				<h5><strong>Est. Charges to Date</strong></h5>
 				<h4>$52,545</h4>
 			</div>
 			<div class="col-xs-6">
-				<h5><strong>Budget for October</strong></h5>
+				<h5><strong>Est. Charges for October</strong></h5>
 				<h4>$250,000</h4>
 			</div>
 		</div>
 		<hr>
 		<div class="row" ng-controller="ApplicationCtrl">
 			<div class="col-xs-12">
-				<h3>Applications Over Budget</h3>
+				<h3>Applications Over Est. Spend</h3>
 				<h5>as of 2:47pm today</h5>
 				<ul>
 					<li ng-repeat="application in applications | limitTo: 3">
-						<div class="row data-row data-row-sm alert-danger" ng-click="showApplicationDetails(application.id)">
+						<div class="row data-row data-row-sm alert-danger" ng-click="showApplicationDetails(application.id, 'dashboard')">
 							<div class="col-xs-9">
 								<div>{{ application.name }}</a></div>
 								<div>{{ application.cost.current | currency }} <span class="text-danger"><i class="fa fa-arrow-up"></i>+150% of $5,500</span></div>
@@ -80,12 +80,12 @@
 			<div class="col-xs-12">
 				<h3>Providers</h3>
 				<ul>
-					<li ng-repeat="provider in providerBillTotals">
+					<li ng-repeat="provider in providers">
 						<div class="row data-row data-row-sm" ng-click="showProviderDetails(provider.id)">
 							<div class="col-xs-3"><img ng-src="{{provider.thumbnail}}"></div>
 							<div class="col-xs-6">
-								<div>{{ provider.name }}</div>
-								<div>{{ provider.billTotal | currency }}</div>
+								<div>{{ provider.name }} {{ provider.id }}</div>
+								<div>{{ provider.bills[0].billingSummary.charges - provider.bills[0].billingSummary.credits + provider.bills[0].billingSummary.tax | currency }}</div>
 							</div>
 							<div class="col-xs-3 text-right">
 								>
