@@ -8,6 +8,7 @@ app.controller('MainCtrl', ['$scope', '$http', 'Bills', 'Data', 'Providers', 'Ch
 	window.setTimeout(function() {
         $scope.$apply(function() {
             $scope.totalCharges = Data.getTotalCharges();
+            console.log($scope.totalCharges);
         });
         Charts.getLineChart('linechart', 'Estimated Charges vs Actual Charges', 'Estimated Charges', 'Actual Charges');     
     }, 500);
