@@ -10,7 +10,18 @@
 
             <ul class="list-inline list-unstyled">
                 <li>
-                    <h1>{{ provider.name }}</h1>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ provider.name }} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">All</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <h3>October 2015</h3>
@@ -25,21 +36,17 @@
                 <div class="col-xs-3">
                     <dl class="dl-horizontal">
                         <dt>Storage</dt>
-                        <dd><a>2.75 TB</a></dd>
+                        <dd>2.75 TB</dd>
                         <dt>Data Transfer</dt>
                         <dd>8.65 TB</dd>
-                        <dt>Total Spend</dt>
-                        <dd>$43,345.76</dd>
                     </dl>
                 </div>
                 <div class="col-xs-3">
                     <dl class="dl-horizontal">
-                        <dt>Key</dt>
-                        <dd><a>Value</a></dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
-                        <dt>Key</dt>
-                        <dd>Value</dd>
+                        <dt>Average Daily Spend</dt>
+                        <dd>$3,405.56</dd>
+                        <dt>Total Spend</dt>
+                        <dd>$43,546.77</dd>
                     </dl>
                 </div>
                 <div class="col-xs-6">
@@ -48,7 +55,7 @@
                         <li class="pull-right">
                             <div class="dropdown pull-right">
                                 <button class="btn btn-default dropdown-toggle" type="button" id="btnItemActions1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <span>Item Actions</span>
+                                    <span>More Actions</span>
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
@@ -59,8 +66,6 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="pull-right hidden-xs"><a class="btn btn-link">Action 3</a></li>
-                        <li class="pull-right hidden-xs"><a class="btn btn-link">Action 2</a></li>
                         <li class="pull-right hidden-xs"><a class="btn btn-link">Generate Report</a></li>
                     </ul>
 
@@ -68,9 +73,22 @@
             </div>
         
 
-            <h2 class="border-bottom">Applications</h2>
+            <!--
+            <h2 class="border-bottom" ng-init="appView == 'list'">Applications
+                <a class="pull-right" ng-click="appView = 'list'"><i class="fa fa-bars"></i></a>
+                <a class="pull-right" ng-click="appView = 'graph'"><i class="fa fa-line-chart"></i></a>
+            </h2>
             <h5>Comparisons are relative to previous month</h5>
-            <div class="row data-row data-row-lg">
+            <div class="row data-row data-row-lg" ng-show="appView == 'graph'">
+                <div class="col-sm-3" ng-click="showApplicationDetails(app.id, provider.id)">
+                    <div id="providerDetailsAppPie" style="min-width: 310px; height: 250px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+                <div class="col-sm-9" ng-click="showApplicationDetails(app.id, provider.id)">
+                    <div id="providerDetailsAppLine" style="min-width: 810px; height: 250px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+            </div>
+
+            <div class="row data-row data-row-lg" ng-show="appView != 'graph'">
                 <div class="col-sm-6"  ng-repeat="app in applications" ng-click="showApplicationDetails(app.id, provider.id)">
                     <dl class="dl-horizontal">
                         <dt>{{ app.name }}</dt>
@@ -79,10 +97,22 @@
                     </dl>
                 </div>
             </div>
+            -->
 
-            <h2 class="border-bottom">Accounts</h2>
+            <h2 class="border-bottom" ng-init="acctView == 'list'">Accounts
+                <a class="pull-right" ng-click="acctView = 'list'"><i class="fa fa-bars"></i></a>
+                <a class="pull-right" ng-click="acctView = 'graph'"><i class="fa fa-line-chart"></i></a>
+            </h2>
             <h5>Comparisons are relative to previous month</h5>
-            <div class="row data-row data-row-lg">
+            <div class="row data-row data-row-lg" ng-show="acctView == 'graph'">
+                <div class="col-sm-3" ng-click="showApplicationDetails(app.id, provider.id)">
+                    <div id="providerDetailsAcctPie" style="min-width: 310px; height: 250px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+                <div class="col-sm-9" ng-click="showApplicationDetails(app.id, provider.id)">
+                    <div id="providerDetailsAcctLine" style="min-width: 810px; height: 250px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+            </div>
+            <div class="row data-row data-row-lg" ng-show="acctView != 'graph'">
                 <div class="col-sm-6"  ng-repeat="account in accounts">
                     <dl class="dl-horizontal">
                         <dt>{{ account.account }}</dt>
@@ -92,6 +122,7 @@
                 </div>
             </div>
 
+            <!--
             <div class="row">
                 <div class="col-sm-8">
                     <h2 class="border-bottom">Detail Section (66%)</h2>
@@ -102,8 +133,9 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam iaculis iaculis turpis id facilisis. Donec non tellus in libero convallis maximus. Nunc tortor nulla, sodales in ullamcorper a, pellentesque quis massa. Morbi risus nulla, malesuada et leo eget, sodales fringilla ligula. Pellentesque volutpat sem eros, nec hendrerit mauris vehicula aliquam. Nunc faucibus diam quis ex facilisis, ut malesuada est mollis. Nullam consectetur ac risus nec sagittis. Morbi scelerisque ullamcorper gravida. Nam eu elit posuere, placerat nulla ac, blandit metus.</p>
                 </div>
             </div>
+            -->
 
-
+            <!--
             <div class="row">
                 <div class="col-sm-12">
                     <h2 class="border-bottom">Services</h2>
@@ -203,6 +235,7 @@
             <br>
             <br>
             <br>
+            -->
 
             <!-- Delete confirmation Modal -->
             <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">

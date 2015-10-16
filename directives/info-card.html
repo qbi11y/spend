@@ -1,0 +1,12 @@
+
+<ul>
+	<li ng-repeat="application in applications | limitTo: 3">
+		<div class="row data-row data-row-sm alert-danger" ng-click="showApplicationDetails(application.id, 'dashboard')">
+			<div class="col-xs-9">
+				<div><strong>{{ application.name }}</strong></a></div>
+				<div>{{ application.cost.current | currency }} <span class="text-danger"><i class="fa fa-arrow-up"></i>+150% of $5,500</span></div>
+			</div>
+			<div class="col-xs-3 text-right"> > </div>						
+		</div>
+	</li>
+</ul>

@@ -6,44 +6,30 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="btn-group btn-group-justified" role="group" aria-label="...">
-				<div class="btn-group" role="group">
-					<button type="button" class="btn btn-default" ng-class="{'active': dashboardView == 'overview'}" ng-click="updateDashboard('overview', this)">Overview</button>
-				</div>
-				<div class="btn-group" role="group">
-					<button type="button" class="btn btn-default" ng-class="{'active': dashboardView == 'org'}" ng-click="updateDashboard('org', this)">Organization</button>
-				</div>
-			</div>
+			<select class="form-control">
+				<option>Filter by provider, provider account, service type, tags</option>
+			</select>
 		</div>
+	</div>	
+	
+	<div class="row data-row data-row-lg">		
+		<div id="linechart" style="width:100%; height:200px;"></div>	
 	</div>
 	
-	
-	<div class="row">
-		<!--
-		<div class="col-xs-12 bar">
-			<div class="bar-stacked green">Group 1 adfvsdfivsergsdfvsdv sojdfoslnesnrl</div>
-			<div class="bar-stacked orange">Grljnnsernvoeurfnr;nerfsenrfunse</div>
-			<div class="bar-stacked red">Group 3 sdhfsalslfjknksf</div>
-			<div class="bar-stacked blue">Group 4 sdjf;sjn</div>
-			<div class="bar-stacked grey">Group 5asdnf</div>
-			<div class="bar-stacked purple">Grou</div>
-			<div class="bar-stacked brown">Gr</div>
-		</div>
-		-->
-		
-		<div id="piechart" style="width:100%; height:200px;"></div>
-	
-	</div>
-	<div ng-show="dashboardView == 'overview'">
 		<div class="row">
 			<div class="col-xs-12">
 				<h1>October 2015</h1>
 			</div>
 		</div>
 		<div class="row data-row data-row-lg" ng-controller="MainCtrl">
-			<div class="col-xs-12">
+			<div class="col-xs-6">
 				<h4>Actual Charges to Date</h4>
-				<h1>$75,654 <span class="text-danger"><i class="fa fa-arrow-up"></i>+44%</span></h1>
+				<h1>{{ totalCharges }} <span class="text-danger"><i class="fa fa-arrow-up"></i>+44%</span></h1>
+				<!--<h1>{{ billTotal | currency }}</h1>-->
+			</div>
+			<div class="col-xs-6">
+				<h4>Projected October Charges</h4>
+				<h1>$275,654 <span class="text-danger"><i class="fa fa-arrow-up"></i>+10%</span></h1>
 				<!--<h1>{{ billTotal | currency }}</h1>-->
 			</div>
 		</div>
@@ -53,40 +39,21 @@
 				<h4>$52,545</h4>
 			</div>
 			<div class="col-xs-6">
-				<h5><strong>Est. Charges for October</strong></h5>
+				<h5><strong>Estimated Charges for October</strong></h5>
 				<h4>$250,000</h4>
 			</div>
 		</div>
 		<hr>
-		<div class="row" ng-controller="ApplicationCtrl">
-			<div class="col-xs-12">
-				<h3>Applications Over Est. Spend</h3>
-				<h5>as of 2:47pm today</h5>
-				<ul>
-					<li ng-repeat="application in applications | limitTo: 3">
-						<div class="row data-row data-row-sm alert-danger" ng-click="showApplicationDetails(application.id, 'dashboard')">
-							<div class="col-xs-9">
-								<div>{{ application.name }}</a></div>
-								<div>{{ application.cost.current | currency }} <span class="text-danger"><i class="fa fa-arrow-up"></i>+150% of $5,500</span></div>
-							</div>
-							<div class="col-xs-3 text-right"> > </div>						
-						</div>
-					</li>
-				</ul>
-				<div><a ui-sref="applications">View All Applications</a></div>
-			</div>
-		</div>
+		<!-- this section will need to be removed -->
+		
+		<!-- end of removal section -->
 		<div class="row" ng-controller="ProviderCtrl">
 			<div class="col-xs-12">
 				<h3>Providers</h3>
 				<ul>
 					<li ng-repeat="provider in providers">
 						<div class="row data-row data-row-sm" ng-click="showProviderDetails(provider.id)">
-							<div class="col-xs-3"><img ng-src="{{provider.thumbnail}}"></div>
-							<div class="col-xs-6">
-								<div>{{ provider.name }} {{ provider.id }}</div>
-								<div>{{ provider.bills[0].billingSummary.charges - provider.bills[0].billingSummary.credits + provider.bills[0].billingSummary.tax | currency }}</div>
-							</div>
+							<div class="col-xs-9">Provider Here</div>
 							<div class="col-xs-3 text-right">
 								>
 							</div>
@@ -98,16 +65,4 @@
 		</div>
 	</div>
 
-	<div ng-show="dashboardView == 'org'">
-		<div class="row">
-			<div class="col-xs-12">View By
-				<select class="form-control" ng-model="orgView" ng-init="orgView = 'application'" >
-					<option value="application">Application</option>
-					<option value="environment">Environment</option>
-					<option value="architecture">Architectural Layer</option>
-
-				</select>
-			</div>
-		</div>
-	</div>
 </div>

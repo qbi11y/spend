@@ -24,9 +24,9 @@
                     <dl class="dl-horizontal">
                         <dt>Provider</dt>
                         <dd><a>Amazon</a></dd>
-                        <dt>Total</dt>
+                        <dt>Spend to Date</dt>
                         <dd>$24,096.01</dd>
-                        <dt>Budget</dt>
+                        <dt>Est. Spend to Date</dt>
                         <dd>$14,096.01</dd>
                         <dt></dt>
                     </dl>
@@ -72,12 +72,79 @@
                         <span class="collapsed" role="button" data-toggle="collapse" data-target="#computeCollapse" aria-expanded="false" aria-controls="computeCollapse">
                             <i class="fa fa-angle-down collapsed-hide"></i>
                             <i class="fa fa-angle-right collapsed-show"></i>
-                            &nbsp;<span>Compute - $500</span>
+                            &nbsp;<span>Compute - Actual Spend $500 | Est. Spend $500</span>
                         </span>
                     </h4>
                     <div class="collapse" id="computeCollapse">
                         <div class="well">
+                            <table class="table table-responsive table-hover" st-table="data.listItems">
+                <thead>
+                    <tr>
+                        <th>
+                            <input cs-select-all="data.listItems" type="checkbox" /></th>
+                        <th st-sort="'column1'">Service</th>
+                        <th st-sort="'column2'">Recurring Cost</th>
+                        <th st-sort="'column3'">Non-Recurring Cost</th>
+                        <th st-sort="'column4'">Usage Charges</th>
+                        <th st-sort="'column4'">Taxes</th>
+                        <th st-sort="'column4'">Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="checkbox" cs-select="listItem" ng-model="listItem.isSelected" /></td>
+                        <td>Hadoop-Cluster</td>
+                        <td>$21,000.00</td>
+                        <td>-</td>
+                        <td>$75.00</td>
+                        <td>$75.00</td>
+                        <td>$30,100.00</td>
+                        <td class="text-right">
+                            <ul class="list-unstyled list-inline list-nomargin">
+                                <li>
+                                    <a data-placement="left" data-toggle="popover" title="Tooltip for {{listItem.name}}" data-html="true">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                    <div class="popover-content hidden">
+                                        <dl class="dl-horizontal">
+                                            <dt>Key</dt>
+                                            <dd>Value</dd>
+                                            <dt>Key</dt>
+                                            <dd>Value</dd>
+                                            <dt>Key</dt>
+                                            <dd>Value</dd>
+                                            <dt>Key</dt>
+                                            <dd>Value</dd>
+                                            <dt>Key</dt>
+                                            <dd>Value</dd>
+                                            <dt>Key</dt>
+                                            <dd>Value</dd>
+                                        </dl>
+                                    </div>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <div class="dropdown">
+                                        <span class="dropdown-toggle" id="Button1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <span>Item Actions</span>
+                                            <span class="caret"></span>
+                                        </span>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
 
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
                         </div>
                     </div>
 
@@ -85,7 +152,7 @@
                         <span class="collapsed" role="button" data-toggle="collapse" data-target="#storageCollapse" aria-expanded="false" aria-controls="storageCollapse">
                             <i class="fa fa-angle-down collapsed-hide"></i>
                             <i class="fa fa-angle-right collapsed-show"></i>
-                            &nbsp;<span>Storage - $1,000</span>
+                            &nbsp;<span>Storage - Actual Spend $1,000 | Est. Spend $250</span>
                         </span>
                     </h4>
                     <div class="collapse" id="storageCollapse">
@@ -174,7 +241,7 @@
                         <span class="collapsed" role="button" data-toggle="collapse" data-target="#networkCollapse" aria-expanded="false" aria-controls="networkCollapse">
                             <i class="fa fa-angle-down collapsed-hide"></i>
                             <i class="fa fa-angle-right collapsed-show"></i>
-                            &nbsp;<span>Network - $3,500</span>
+                            &nbsp;<span>Network - Actual Spend $3,500 | Est. Spend $3,250</span>
                         </span>
                     </h4>
                     <div class="collapse" id="networkCollapse">
@@ -276,14 +343,4 @@
 
 
         </section>
-
-        <footer>
-            <div class="container">
-                <ul class="list-unstyled list-inline">
-                    <li class="pull-right">
-                        <img src="images/powered_by_gravitant.png" alt="footer logo">
-                    </li>
-                </ul>
-            </div>
-        </footer>
     </div>

@@ -22,6 +22,19 @@ ul.list-separated li:last-child {
 	border-bottom: 0px solid white;
 }
 
+h2 i.fa {
+	margin-left: 10px;
+	font-size: 20px;
+}
+
+.breadcrumb {
+	background-color: transparent;
+}
+
+.row .btn-group {
+	margin-bottom: 40px;
+}
+
 .data-row {
 	background-color: white;
 	-webkit-box-shadow: 0 1px 1px 1px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
