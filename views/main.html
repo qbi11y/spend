@@ -11,7 +11,7 @@
 
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
                             </span>
@@ -89,51 +89,61 @@
             </form>
 		</div>
 	</div>	
+    <div class="row">
+            <div class="col-xs-12">
+                <h1>October 2015</h1>
+            </div>
+        </div>
+        <div class="row data-row data-row-lg">
+            <div class="col-xs-6">
+                <h4>Actual Charges to Date</h4>
+                <h1>{{ totalCharges | currency }} <span class="text-danger"><i class="fa fa-arrow-up"></i>+44%</span></h1>
+                <!--<h1>{{ billTotal | currency }}</h1>-->
+            </div>
+            <div class="col-xs-6">
+                <h4>Projected October Charges</h4>
+                <h1>$275,654 <span class="text-danger"><i class="fa fa-arrow-up"></i>+10%</span></h1>
+                <!--<h1>{{ billTotal | currency }}</h1>-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <h5><strong>Est. Charges to Date</strong></h5>
+                <h4>$52,545</h4>
+            </div>
+            <div class="col-xs-6">
+                <h5><strong>Estimated Charges for October</strong></h5>
+                <h4>$250,000</h4>
+            </div>
+        </div>
+        <hr>
 	
 	<div class="row data-row data-row-lg">		
-		<div id="linechart" style="width:100%; height:200px;"></div>	
+        <div class="col-sm-3">
+            <div id="dashboardPie" style="min-width: 310px; height: 250px; max-width: 600px; margin: 0 auto"></div>
+        </div>
+        <div class="col-sm-9">
+            <div id="dashboardLine" style="min-width: 810px; height: 250px; max-width: 600px; margin: 0 auto"></div>
+        </div>	
 	</div>
 	
-		<div class="row">
-			<div class="col-xs-12">
-				<h1>October 2015</h1>
-			</div>
-		</div>
-		<div class="row data-row data-row-lg">
-			<div class="col-xs-6">
-				<h4>Actual Charges to Date</h4>
-				<h1>{{ totalCharges | currency }} <span class="text-danger"><i class="fa fa-arrow-up"></i>+44%</span></h1>
-				<!--<h1>{{ billTotal | currency }}</h1>-->
-			</div>
-			<div class="col-xs-6">
-				<h4>Projected October Charges</h4>
-				<h1>$275,654 <span class="text-danger"><i class="fa fa-arrow-up"></i>+10%</span></h1>
-				<!--<h1>{{ billTotal | currency }}</h1>-->
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-6">
-				<h5><strong>Est. Charges to Date</strong></h5>
-				<h4>$52,545</h4>
-			</div>
-			<div class="col-xs-6">
-				<h5><strong>Estimated Charges for October</strong></h5>
-				<h4>$250,000</h4>
-			</div>
-		</div>
-		<hr>
+		
 		<!-- this section will need to be removed -->
 		
 		<!-- end of removal section -->
 		<div class="row">
 			<div class="col-xs-12">
-				<h3>Providers</h3>
+				<h3>Providers<span class="pull-right" ng-init="catProviders.order='desc'"><h5>Sort By:
+                    <a href="" ng-click="catProviders.order = 'asc'" ng-if="catProviders.order == 'desc'"> High to Low</a>
+                    <a href="" ng-click="catProviders.order = 'desc'" ng-if="catProviders.order == 'asc'"> Low to High</a>
+                </h5></span></h3>
 				<ul>
-					<li ng-repeat="provider in providers track by $index">
+					<li ng-repeat="provider in providers | filter: searchText">
 						<div class="row data-row data-row-sm" ng-click="showProviderDetails(provider)">
-							<div class="col-xs-4">{{ provider }}</div>
-							<div class="col-xs-4">{{ getProviderTotal(provider) | currency }}</div>
-							<div class="col-xs-4 text-right">
+							<div class="col-xs-3"><img ng-src="{{ getProviderLogo(provider) }}"></div>
+                            <div class="col-xs-3">{{ provider }}</div>
+							<div class="col-xs-3">{{ getProviderTotal(provider) | currency }}</div>
+							<div class="col-xs-3 text-right">
 								>
 							</div>
 						</div>
@@ -142,6 +152,25 @@
 				</ul>
 			</div>
 		</div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h3>Services
+                <span class="pull-right"><h5>Sort By:
+                    <a href="" ng-click="sortList('desc', 'services')" ng-if="isSorted('asc', 'services')"> High to Low</a>
+                    <a href="" ng-click="sortList('asc', 'services')" ng-if="isSorted('desc', 'services') || sortCategory == ''"> Low to High</a>
+                </h5></span></h3>
+                <ul>
+                    <li ng-repeat="service in services | orderBy: orderBy | filter: searchText">
+                        <div class="row data-row data-row-sm">
+                            <div class="col-xs-6">{{ service.name }}</div>
+                            <div class="col-xs-6">{{ service.total | currency }}</div>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
 	</div>
 
 </div>

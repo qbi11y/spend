@@ -4,21 +4,22 @@ app.factory('Data', ['$http', function($http) {
 	var charges = [];
 	var providers = [];
 	var providerAccts = [];
+	var providerLogos = [
+	{ name: 'aws', url: 'images/aws.png' },
+	{ name: 'azure', url: 'images/azure.png' }
+	];
+
 	setProviders = function(charges) {
 		var providers_ar = [];
 		for (var n=0; n < charges.length; n++) {
 			providers_ar.push(charges[n].criteria.provider);
 		}
-		//console.log('added providers ', providers);
 		providers = providers_ar.filter(function(elem, pos,arr) {
 			return arr.indexOf(elem) == pos;
 		});
-
-		//console.log('set providers ', providers);
 	}
 
-	setCharges = function(ch) {
-		
+	setCharges = function(ch) {		
 		charges = ch;
 	}
 
@@ -27,11 +28,10 @@ app.factory('Data', ['$http', function($http) {
 		var daysTmp = [];
 		var dailyCharges = [];
 		var spendData = {};
-		console.log('charges to daily', charges)
+		
 		for (var n=0; n < charges.length; n++){
 			daysTmp.push(charges[n].criteria.start_date.day_of_month);
 		}
-
 		days = daysTmp.filter(function(elem, pos, arr) {
 			return arr.indexOf(elem) == pos
 		});
@@ -71,21 +71,53 @@ app.factory('Data', ['$http', function($http) {
 	}
 
 	compileCharges = function(acctCharges) {
+		console.log('find the function', acctCharges)
 		var total = 0;
 		for (var n=0; n < acctCharges.length; n++) {
 			total += acctCharges[n].amount * acctCharges[n].quantity;
 		}
 		return total
 	}
+
 	return {
 		init: function() {
 			$http.get('js/usage-detailed.json').success(function(res) {
 				setCharges(res);
 				setProviders(res);
-				//console.log('more prov', res);
 			})
 		},
 
+		getServiceTotals: function() {
+			var servicesNamesTmp = [];
+			var services = []
+			for (var n=0; n < charges.length; n++) {
+				for (var i=0; i < charges[n].result.content.length; i++) {
+					servicesNamesTmp.push(charges[n].result.content[i].attributes.product_name);
+				}
+			}
+			var serviceNames = servicesNamesTmp.filter(function(elem, pos,arr) {
+				return arr.indexOf(elem) == pos;
+			});
+
+			for (var n=0; n < serviceNames.length; n++) {
+				var total = 0;
+				var service = {}
+				for (var i=0; i < charges.length; i++) {
+					for (var j=0; j < charges[i].result.content.length; j++) {
+						if (serviceNames[n] == charges[i].result.content[j].attributes.product_name) {
+							total += charges[i].result.content[j].amount * charges[i].result.content[j].quantity;
+						}
+					}
+					
+				}
+				service.name = serviceNames[n];
+				service.total = total;
+				services.push(service);
+			}
+			console.log('service info to show', services);
+			return services
+		},
+ 
 		getProviderAvgDailySpend: function(provider) {
 			var total = 0;
 			for (var n=0; n < computeProviderDailyTotals(provider).length; n++) {
@@ -130,6 +162,25 @@ app.factory('Data', ['$http', function($http) {
 			}
 			return providerTotal
 		},
+
+		getProviderTotals: function() {
+			var providerData = [];
+			for (var n=0; n < providers.length; n++) {
+				var total = 0;
+				var provider = {};
+				for (var i=0; i < charges.length; i++) {
+					if ( providers[n] == charges[i].criteria.provider) {
+						total += compileCharges(charges[i].result.content)
+					}
+				}
+				provider.name = providers[n];
+				provider.total = total;
+				providerData.push(provider);
+			}
+			console.log('providers to total ', providerData)
+			return providerData
+		},
+
 		getTotalCharges: function() {
 			return computeTotalCharges(charges);
 		},
@@ -177,6 +228,14 @@ app.factory('Data', ['$http', function($http) {
 				}
 			}
 			return lineItems
+		},
+
+		getProviderLogo: function(provider) {
+			for (var n=0; n < providerLogos.length; n++) {
+				if (providerLogos[n].name == provider) {
+					return providerLogos[n].url;
+				}
+			}
 		},
 		setCharges: function() {
 			

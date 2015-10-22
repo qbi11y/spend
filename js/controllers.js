@@ -3,11 +3,36 @@ var app = angular.module('Controllers',['Applications', 'Providers', 'Spend', 'B
 app.controller('DashCtrl', ['$scope', '$http','$state', 'Data', 'Charts', function($scope, $http, $state, Data, Charts) {
 	window.scrollTo(0,0);
     Data.init();
+    $scope.sortCategory = '';
+    $scope.sortOrder = 'desc';
+    $scope.orderBy = '-total';
     $scope.getProviderTotal = function(provider) {
         return Data.getProviderTotal(provider);
     }
     $scope.showProviderDetails = function(providerID) {
         $state.go('providerDetails', {id: providerID});
+    }
+
+    $scope.getProviderLogo = function(provider) {
+        return Data.getProviderLogo(provider);
+    }
+
+    $scope.sortList = function(order, category) {
+        $scope.sortCategory = category;
+        $scope.sortOrder = order;
+        if (order == 'desc') {
+            $scope.orderBy = '-total';
+        } else {
+            $scope.orderBy = 'total';
+        }
+    }
+
+    $scope.isSorted = function(order, category) {
+        if ($scope.sortCategory == category && $scope.sortOrder == order) {
+            return true
+        } else {
+            return false
+        }
     }
 
     //console.log($scope.totalCharges);
@@ -18,7 +43,10 @@ app.controller('DashCtrl', ['$scope', '$http','$state', 'Data', 'Charts', functi
             $scope.providers = Data.getProviders();
             $scope.totalCharges = Data.getTotalCharges();
             $scope.totalDailyCharges = Data.getDailyTotals();
-            Charts.getLineChart('linechart', 'Estimated Charges vs Actual Charges', 'Estimated Charges', 'Actual Charges', Data.getDailyTotals());
+            console.log('providers for pie ', $scope.totalCharges);
+            $scope.services = Data.getServiceTotals();
+            Charts.getLineChart('dashboardLine', 'Estimated Charges vs Actual Charges', 'Estimated Charges', 'Actual Charges', Data.getDailyTotals());
+            Charts.getPieChart('dashboardPie', 'Account Charges', 'Percentage', Data.convertData('pie', Data.getProviderTotals()));
         });     
     }, 500);
 }])

@@ -71,11 +71,6 @@
 
             <h2 class="border-bottom" ng-init="acctView == 'list'">Accounts
             </h2>
-            <h5>Comparisons are relative to previous month 
-                <span class="pull-right">Sort By: {{ sortBy }}
-                    <a href="" ng-click="sortList('desc')" ng-if="sortBy == 'asc'">High to Low</a>
-                    <a href="" ng-click="sortList('asc')" ng-if="sortBy == 'desc'">Low to High</a>
-                </span></h5>
             <div class="row data-row data-row-lg">
                 <div class="col-sm-3">
                     <div id="providerDetailsAcctPie" style="min-width: 310px; height: 250px; max-width: 600px; margin: 0 auto"></div>
@@ -163,9 +158,9 @@
             </div>
             <div class="row">
                 <div class="col-xs-12"><h5>
-                <span class="pull-right">Sort By: {{ sortBy }}
-                    <a href="" ng-click="sortList('desc')" ng-if="sortBy == 'asc'">High to Low</a>
-                    <a href="" ng-click="sortList('asc')" ng-if="sortBy == 'desc'">Low to High</a>
+                <span class="pull-right">Sort By:
+                    <a href="" ng-click="sortList('desc')" ng-if="sortBy == 'asc'"> High to Low</a>
+                    <a href="" ng-click="sortList('asc')" ng-if="sortBy == 'desc'"> Low to High</a>
                 </span></h5></div>
             </div>
             
