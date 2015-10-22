@@ -1,4 +1,4 @@
-<div class="container" ng-controller="MainCtrl">
+<div class="container" ng-controller="DashCtrl">
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="alert alert-warning" role="alert" ng-show="0 == 1">Budget Alert Here</div>
@@ -6,9 +6,87 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
-			<select class="form-control">
-				<option>Filter by provider, provider account, service type, tags</option>
-			</select>
+			<div class="well well-sm">
+                <form class="form-inline clearfix">
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#sectionFilter" aria-expanded="false" aria-controls="sectionFilter"><i class="fa fa-filter"></i>Filter</button>
+                    </div>
+
+
+                    <div class="form-group pull-right">
+
+                        <div class="dropdown pull-right">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Page Actions
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <form id="sectionFilter" class="collapse">
+                <div class="well form-horizontal">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="sampleInput1" class="col-sm-4 control-label text-left">Provider</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="sampleInput1" placeholder="Filter Value" ng-model="data.filter1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="sampleInput2" class="col-sm-4 control-label text-left">Resource Type</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="sampleInput2" placeholder="Filter Value" ng-model="data.filter2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="sampleInput2" class="col-sm-4 control-label text-left">Tags</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="sampleInput2" placeholder="Filter Value" ng-model="data.filter2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul class="list-unstyled list-inline text-right">
+                                <li>
+                                    <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#sectionFilter">Close</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn btn-default" ng-click="actions.clearFilters()">Clear Filters</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#sectionFilter" ng-click="actions.updateFilter()">Apply Filters</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </form>
 		</div>
 	</div>	
 	
@@ -24,7 +102,7 @@
 		<div class="row data-row data-row-lg">
 			<div class="col-xs-6">
 				<h4>Actual Charges to Date</h4>
-				<h1>{{ totalCharges }} <span class="text-danger"><i class="fa fa-arrow-up"></i>+44%</span></h1>
+				<h1>{{ totalCharges | currency }} <span class="text-danger"><i class="fa fa-arrow-up"></i>+44%</span></h1>
 				<!--<h1>{{ billTotal | currency }}</h1>-->
 			</div>
 			<div class="col-xs-6">
@@ -47,14 +125,15 @@
 		<!-- this section will need to be removed -->
 		
 		<!-- end of removal section -->
-		<div class="row" ng-controller="ProviderCtrl">
+		<div class="row">
 			<div class="col-xs-12">
 				<h3>Providers</h3>
 				<ul>
-					<li ng-repeat="provider in providers">
-						<div class="row data-row data-row-sm" ng-click="showProviderDetails(provider.id)">
-							<div class="col-xs-9">Provider Here</div>
-							<div class="col-xs-3 text-right">
+					<li ng-repeat="provider in providers track by $index">
+						<div class="row data-row data-row-sm" ng-click="showProviderDetails(provider)">
+							<div class="col-xs-4">{{ provider }}</div>
+							<div class="col-xs-4">{{ getProviderTotal(provider) | currency }}</div>
+							<div class="col-xs-4 text-right">
 								>
 							</div>
 						</div>

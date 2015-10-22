@@ -33,6 +33,10 @@ h2 i.fa {
   font-size: 20px;
 }
 
+.modal-dialog {
+  width: 60%;
+}
+
 /* line 30, ../sass/main-styles.scss */
 .breadcrumb {
   background-color: transparent;

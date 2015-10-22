@@ -1,4 +1,5 @@
 <div class="page-wrapper">
+
         <section class="container">
 
             <div class="row">
@@ -11,15 +12,11 @@
             <ul class="list-inline list-unstyled">
                 <li>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ provider.name }} <span class="caret"></span>
+                        <button type="button" ng-repeat="provider in providers" ng-if="provider == currProvider" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ provider }} <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="#">All</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
+                            <li ng-repeat="provider in providers" ng-if="provider != currProvider"><a ng-click="showProviderDetails(provider)">{{ provider }}</a></li>
                         </ul>
                     </div>
                 </li>
@@ -46,7 +43,7 @@
                         <dt>Average Daily Spend</dt>
                         <dd>$3,405.56</dd>
                         <dt>Total Spend</dt>
-                        <dd>$43,546.77</dd>
+                        <dd>{{ computeAcctTotal(providerAccts) | currency }}</dd>
                     </dl>
                 </div>
                 <div class="col-xs-6">
@@ -71,69 +68,33 @@
 
                 </div>
             </div>
-        
-
-            <!--
-            <h2 class="border-bottom" ng-init="appView == 'list'">Applications
-                <a class="pull-right" ng-click="appView = 'list'"><i class="fa fa-bars"></i></a>
-                <a class="pull-right" ng-click="appView = 'graph'"><i class="fa fa-line-chart"></i></a>
-            </h2>
-            <h5>Comparisons are relative to previous month</h5>
-            <div class="row data-row data-row-lg" ng-show="appView == 'graph'">
-                <div class="col-sm-3" ng-click="showApplicationDetails(app.id, provider.id)">
-                    <div id="providerDetailsAppPie" style="min-width: 310px; height: 250px; max-width: 600px; margin: 0 auto"></div>
-                </div>
-                <div class="col-sm-9" ng-click="showApplicationDetails(app.id, provider.id)">
-                    <div id="providerDetailsAppLine" style="min-width: 810px; height: 250px; max-width: 600px; margin: 0 auto"></div>
-                </div>
-            </div>
-
-            <div class="row data-row data-row-lg" ng-show="appView != 'graph'">
-                <div class="col-sm-6"  ng-repeat="app in applications" ng-click="showApplicationDetails(app.id, provider.id)">
-                    <dl class="dl-horizontal">
-                        <dt>{{ app.name }}</dt>
-                        <dd>{{ app.cost | currency }} <span><i class="fa fa-arrow-up" ng-show="app.change > 0"></i><i class="fa fa-arrow-down" ng-show="app.change < 0"></i></span>{{ app.change }}%</dd>
-                        <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
-                    </dl>
-                </div>
-            </div>
-            -->
 
             <h2 class="border-bottom" ng-init="acctView == 'list'">Accounts
                 <a class="pull-right" ng-click="acctView = 'list'"><i class="fa fa-bars"></i></a>
                 <a class="pull-right" ng-click="acctView = 'graph'"><i class="fa fa-line-chart"></i></a>
             </h2>
-            <h5>Comparisons are relative to previous month</h5>
+            <h5>Comparisons are relative to previous month 
+                <span class="pull-right">Sort By: {{ sortBy }}
+                    <a href="" ng-click="sortList('desc')" ng-if="sortBy == 'asc'">High to Low</a>
+                    <a href="" ng-click="sortList('asc')" ng-if="sortBy == 'desc'">Low to High</a>
+                </span></h5>
             <div class="row data-row data-row-lg" ng-show="acctView == 'graph'">
-                <div class="col-sm-3" ng-click="showApplicationDetails(app.id, provider.id)">
+                <div class="col-sm-3">
                     <div id="providerDetailsAcctPie" style="min-width: 310px; height: 250px; max-width: 600px; margin: 0 auto"></div>
                 </div>
-                <div class="col-sm-9" ng-click="showApplicationDetails(app.id, provider.id)">
+                <div class="col-sm-9">
                     <div id="providerDetailsAcctLine" style="min-width: 810px; height: 250px; max-width: 600px; margin: 0 auto"></div>
                 </div>
             </div>
             <div class="row data-row data-row-lg" ng-show="acctView != 'graph'">
-                <div class="col-sm-6"  ng-repeat="account in accounts">
+                <div class="col-sm-6"  ng-repeat="account in providerAccts | orderBy: orderListBy">
                     <dl class="dl-horizontal">
-                        <dt>{{ account.account }}</dt>
-                        <dd>{{ account.charges | currency }}</dd>
+                        <dt data-toggle="modal" data-target="#lineItems" ng-click="showLineItems(account)">{{ account.name }}</dt>
+                        <dd>{{ account.total | currency }}</dd>
                         <dt class="border-bottom"></dt><dd class="border-bottom"></dd>
                     </dl>
                 </div>
             </div>
-
-            <!--
-            <div class="row">
-                <div class="col-sm-8">
-                    <h2 class="border-bottom">Detail Section (66%)</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam iaculis iaculis turpis id facilisis. Donec non tellus in libero convallis maximus. Nunc tortor nulla, sodales in ullamcorper a, pellentesque quis massa. Morbi risus nulla, malesuada et leo eget, sodales fringilla ligula. Pellentesque volutpat sem eros, nec hendrerit mauris vehicula aliquam. Nunc faucibus diam quis ex facilisis, ut malesuada est mollis. Nullam consectetur ac risus nec sagittis. Morbi scelerisque ullamcorper gravida. Nam eu elit posuere, placerat nulla ac, blandit metus.</p>
-                </div>
-                <div class="col-sm-4">
-                    <h2 class="border-bottom">Detail Section (33%)</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam iaculis iaculis turpis id facilisis. Donec non tellus in libero convallis maximus. Nunc tortor nulla, sodales in ullamcorper a, pellentesque quis massa. Morbi risus nulla, malesuada et leo eget, sodales fringilla ligula. Pellentesque volutpat sem eros, nec hendrerit mauris vehicula aliquam. Nunc faucibus diam quis ex facilisis, ut malesuada est mollis. Nullam consectetur ac risus nec sagittis. Morbi scelerisque ullamcorper gravida. Nam eu elit posuere, placerat nulla ac, blandit metus.</p>
-                </div>
-            </div>
-            -->
 
             <!--
             <div class="row">
@@ -274,17 +235,90 @@
                     </div>
                 </div>
             </div>
-
-
         </section>
 
-        <footer>
-            <div class="container">
-                <ul class="list-unstyled list-inline">
-                    <li class="pull-right">
-                        <img src="images/powered_by_gravitant.png" alt="footer logo">
-                    </li>
-                </ul>
-            </div>
-        </footer>
+
+<!-- Modal -->
+<div class="modal fade" id="lineItems" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel">{{ currAcct.name }}</h3>
+      </div>
+      <div class="modal-body">
+        <table class="table table-responsive table-hover" st-table="data.listItems">
+                <thead>
+                    <tr>
+                        <th>
+                            <input cs-select-all="data.listItems" type="checkbox" /></th>
+                        <th st-sort="'column1'">Category</th>
+                        <th st-sort="'column2'">Amount</th>
+                        <th st-sort="'column3'">Quantity</th>
+                        <th st-sort="'column4'">Resource</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="lineItem in lineItems">
+                        <td>
+                            <input type="checkbox"/></td>
+                        <td>{{lineItem.category}}</td>
+                        <td>{{lineItem.amount}}</td>
+                        <td>{{lineItem.quantity}}</td>
+                        <td>{{lineItem.resource_name}}</td>
+                        <td class="text-right">
+                            <ul class="list-unstyled list-inline list-nomargin">
+                                <li>
+                                    <a data-placement="left" data-toggle="popover" title="Tooltip for {{listItem.name}}" data-html="true">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                    <div class="popover-content hidden">
+                                        <dl class="dl-horizontal">
+                                            <dt>Key</dt>
+                                            <dd>Value</dd>
+                                            <dt>Key</dt>
+                                            <dd>Value</dd>
+                                            <dt>Key</dt>
+                                            <dd>Value</dd>
+                                            <dt>Key</dt>
+                                            <dd>Value</dd>
+                                            <dt>Key</dt>
+                                            <dd>Value</dd>
+                                            <dt>Key</dt>
+                                            <dd>Value</dd>
+                                        </dl>
+                                    </div>
+                                </li>
+                                <!--
+                                <li><a data-toggle="modal" data-target="#editModal"><i class="fa fa-edit"></i></a></li>
+                                <li><a data-toggle="modal" data-target="#confirmationModal"><i class="fa fa-trash"></i></a></li>
+                                <li class="divider"></li>
+                                <li>
+                                    <div class="dropdown">
+                                        <span class="dropdown-toggle" id="Button1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <span>Item Actions</span>
+                                            <span class="caret"></span>
+                                        </span>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li><a href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
+                                </li>-->
+
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
