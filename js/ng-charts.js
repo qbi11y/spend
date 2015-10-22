@@ -30,7 +30,7 @@ app.factory('Charts', function() {
     }
     
 	return {
-		getPieChart: function(elemID, chartTitle, hoverUnit) {
+		getPieChart: function(elemID, chartTitle, hoverUnit, totalCharges) {
 			Highcharts.getOptions().plotOptions.pie.colors = (function () {
         var colors = [],
             base = Highcharts.getOptions().colors[0],
@@ -70,21 +70,7 @@ app.factory('Charts', function() {
             series: [{
                 name: hoverUnit,
                 colorByPoint: true,
-                data: [{
-                    name: "grav-620-eng-qa",
-                    y: 56.33
-                }, {
-                    name: "Grav-700-cto-poc",
-                    y: 24.03,
-                    sliced: true,
-                    selected: true
-                }, {
-                    name: "grav-730-product-clogeny",
-                    y: 10.38
-                }, {
-                    name: "Other",
-                    y: 4.77
-                }]
+                data: totalCharges
             }]
         });
 		},

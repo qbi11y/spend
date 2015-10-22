@@ -18,7 +18,7 @@ app.controller('DashCtrl', ['$scope', '$http','$state', 'Data', 'Charts', functi
             $scope.providers = Data.getProviders();
             $scope.totalCharges = Data.getTotalCharges();
             $scope.totalDailyCharges = Data.getDailyTotals();
-            Charts.getLineChart('linechart', 'Estimated Charges vs Actual Charges', 'Estimated Charges', 'Actual Charges', $scope.totalDailyCharges);
+            Charts.getLineChart('linechart', 'Estimated Charges vs Actual Charges', 'Estimated Charges', 'Actual Charges', Data.getDailyTotals());
         });     
     }, 500);
 }])
@@ -42,7 +42,7 @@ app.controller('ProviderDetailsCtrl', ['$scope', '$http', '$stateParams', '$stat
     })
 	window.setTimeout(function() {
         Charts.getLineChart('providerDetailsAcctLine', 'Estimated Charges vs Actual Charges', 'Estimated Charges', 'Actual Charges', Data.getProviderDailyTotals($stateParams.id));
-        Charts.getPieChart('providerDetailsAcctPie', 'Account Charges', 'Percentage');
+        Charts.getPieChart('providerDetailsAcctPie', 'Account Charges', 'Percentage', Data.convertData('pie', Data.getProviderAccts()));
     }, 500);
     Data.setProviderAccts($stateParams.id);
 	$scope.providers = Data.getProvider($stateParams.id);
@@ -52,6 +52,9 @@ app.controller('ProviderDetailsCtrl', ['$scope', '$http', '$stateParams', '$stat
     console.log('the providers ', $scope.providers);
     $scope.providerAccts = Data.getProviderAccts();
 
+    $scope.computeProviderAvgDailySpend = function(provider) {
+        return Data.getProviderAvgDailySpend(provider);
+    }
     $scope.showProviderDetails = function(providerID) {
         $state.go('providerDetails', {id: providerID});
     }

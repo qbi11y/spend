@@ -26,6 +26,7 @@ app.factory('Data', ['$http', function($http) {
 		var days = [];
 		var daysTmp = [];
 		var dailyCharges = [];
+		var spendData = {};
 		console.log('charges to daily', charges)
 		for (var n=0; n < charges.length; n++){
 			daysTmp.push(charges[n].criteria.start_date.day_of_month);
@@ -45,7 +46,9 @@ app.factory('Data', ['$http', function($http) {
 			}
 			dailyCharges.push(total);
 		}
-		return dailyCharges
+		spendData.numDays = days.length;
+		spendData.charges = dailyCharges;
+		return spendData
 	}
 	computeTotalCharges = function(charges) {
 		var total = 0
@@ -64,7 +67,7 @@ app.factory('Data', ['$http', function($http) {
 				providerCharges.push(charges[n]);
 			}
 		}
-		console.log('charges to work with', computeDailyTotals(providerCharges));
+		return computeDailyTotals(providerCharges).charges;
 	}
 
 	compileCharges = function(acctCharges) {
@@ -82,8 +85,35 @@ app.factory('Data', ['$http', function($http) {
 				//console.log('more prov', res);
 			})
 		},
+
+		getProviderAvgDailySpend: function(provider) {
+			var total = 0;
+			for (var n=0; n < computeProviderDailyTotals(provider).length; n++) {
+				total += computeProviderDailyTotals(provider)[n];
+			}
+			console.log('average daily spend is ', total / computeProviderDailyTotals(provider).length)
+			return total / computeProviderDailyTotals(provider).length
+		},
+
+		convertData: function(type, data) {
+			switch (type) {
+				case 'pie':
+					console.log('data to convert', data);
+					var pieData = [];
+					for (var n=0; n < data.length; n++) {
+						var slice = {};
+						slice.name = data[n].name;
+						slice.y = data[n].total;
+						slice.sliced = false;
+						slice.selected = false;
+						pieData.push(slice);
+					}
+					console.log('converted data', pieData);
+					return pieData;
+			}
+		},
 		getDailyTotals: function() {
-			return computeDailyTotals(charges);
+			return computeDailyTotals(charges).charges;
 		},
 
 		getProviderDailyTotals: function(provider) {
@@ -101,7 +131,6 @@ app.factory('Data', ['$http', function($http) {
 			return providerTotal
 		},
 		getTotalCharges: function() {
-			console.log('charges to work with', computeTotalCharges(charges));
 			return computeTotalCharges(charges);
 		},
 		setProviders: function() {
@@ -113,9 +142,7 @@ app.factory('Data', ['$http', function($http) {
 		getProvider: function(provider) {
 			return providers
 			for (var n=0; n < providers.length; n++) {
-				console.log(providers)
 				if (providers[n].name == provider) {
-					console.log('should be ', providers[n])
 					return providers[n]
 				} 
 			}
@@ -127,19 +154,17 @@ app.factory('Data', ['$http', function($http) {
 					var account = {};
 					account.total = compileCharges(charges[n].result.content)
 					for (var i=0; i < charges[n].result.content.length; i++) {
-						account.name = charges[n].result.content[i].tags.name;
-						
+						account.name = charges[n].result.content[i].tags.name;						
 						accounts.push(account);
-
 					}
 				}
 			}
 			providerAccts = accounts.filter(function(elem, pos,arr) {
 				return arr.indexOf(elem) == pos;
 			});
-			console.log('prov accts ', providerAccts);
 		},
 		getProviderAccts: function() {
+			console.log('provider accouts to chart ', providerAccts);
 			return providerAccts
 		},
 		getLineItems: function(acct) {
