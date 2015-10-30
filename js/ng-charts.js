@@ -25,7 +25,6 @@ app.factory('Charts', function() {
             data.daysInMonth.push(n.toString());
             data.estimatedCost.push( (n + 10) * 10);
         }
-        console.log('days in month', data.daysInMonth);
         return data
     }
     
@@ -76,7 +75,6 @@ app.factory('Charts', function() {
 		},
 		getLineChart: function(elemID, chartTitle, series1, series2, dailyCharges) {
 			// Make monochrome colors and set them as default for all pies
-            console.log('charges for the chart', dailyCharges);
 		    Highcharts.getOptions().plotOptions.pie.colors = (function () {
 		        
 		        

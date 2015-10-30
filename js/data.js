@@ -71,7 +71,6 @@ app.factory('Data', ['$http', function($http) {
 	}
 
 	compileCharges = function(acctCharges) {
-		console.log('find the function', acctCharges)
 		var total = 0;
 		for (var n=0; n < acctCharges.length; n++) {
 			total += acctCharges[n].amount * acctCharges[n].quantity;
@@ -114,7 +113,6 @@ app.factory('Data', ['$http', function($http) {
 				service.total = total;
 				services.push(service);
 			}
-			console.log('service info to show', services);
 			return services
 		},
  
@@ -123,14 +121,12 @@ app.factory('Data', ['$http', function($http) {
 			for (var n=0; n < computeProviderDailyTotals(provider).length; n++) {
 				total += computeProviderDailyTotals(provider)[n];
 			}
-			console.log('average daily spend is ', total / computeProviderDailyTotals(provider).length)
 			return total / computeProviderDailyTotals(provider).length
 		},
 
 		convertData: function(type, data) {
 			switch (type) {
 				case 'pie':
-					console.log('data to convert', data);
 					var pieData = [];
 					for (var n=0; n < data.length; n++) {
 						var slice = {};
@@ -140,7 +136,6 @@ app.factory('Data', ['$http', function($http) {
 						slice.selected = false;
 						pieData.push(slice);
 					}
-					console.log('converted data', pieData);
 					return pieData;
 			}
 		},
@@ -177,7 +172,6 @@ app.factory('Data', ['$http', function($http) {
 				provider.total = total;
 				providerData.push(provider);
 			}
-			console.log('providers to total ', providerData)
 			return providerData
 		},
 
@@ -215,7 +209,6 @@ app.factory('Data', ['$http', function($http) {
 			});
 		},
 		getProviderAccts: function() {
-			console.log('provider accouts to chart ', providerAccts);
 			return providerAccts
 		},
 		getLineItems: function(acct) {

@@ -35,15 +35,11 @@ app.controller('DashCtrl', ['$scope', '$http','$state', 'Data', 'Charts', functi
         }
     }
 
-    //console.log($scope.totalCharges);
 	window.setTimeout(function() {
         $scope.$apply(function() {
-            //$scope.totalCharges = Data.getTotalCharges();
-            console.log('providers', Data.getProviders());
             $scope.providers = Data.getProviders();
             $scope.totalCharges = Data.getTotalCharges();
             $scope.totalDailyCharges = Data.getDailyTotals();
-            console.log('providers for pie ', $scope.totalCharges);
             $scope.services = Data.getServiceTotals();
             Charts.getLineChart('dashboardLine', 'Estimated Charges vs Actual Charges', 'Estimated Charges', 'Actual Charges', Data.getDailyTotals());
             Charts.getPieChart('dashboardPie', 'Account Charges', 'Percentage', Data.convertData('pie', Data.getProviderTotals()));
@@ -66,7 +62,6 @@ app.controller('ProviderCtrl', ['$scope', '$state', 'Providers', function($scope
 app.controller('ProviderDetailsCtrl', ['$scope', '$http', '$stateParams', '$state', 'Providers', 'Data', 'Charts', function($scope, $http, $stateParams, $state, Providers, Data, Charts) {
 	window.scrollTo(0,0);
     $http.get('js/usage-detailed.json').success(function(res) {
-        console.log(res);
     })
 	window.setTimeout(function() {
         Charts.getLineChart('providerDetailsAcctLine', 'Estimated Charges vs Actual Charges', 'Estimated Charges', 'Actual Charges', Data.getProviderDailyTotals($stateParams.id));
@@ -77,7 +72,6 @@ app.controller('ProviderDetailsCtrl', ['$scope', '$http', '$stateParams', '$stat
     $scope.currProvider = $stateParams.id;
     $scope.sortBy = 'desc';
     $scope.orderListBy = '-total';
-    console.log('the providers ', $scope.providers);
     $scope.providerAccts = Data.getProviderAccts();
 
     $scope.computeProviderAvgDailySpend = function(provider) {
@@ -98,14 +92,12 @@ app.controller('ProviderDetailsCtrl', ['$scope', '$http', '$stateParams', '$stat
     $scope.computeAcctTotal = function(accts) {
         var total = 0
         for (var n=0; n < accts.length; n++) {
-            console.log('each account', accts[n].total);
             total += accts[n].total;
         }
         return total
     }
 
 	$scope.showLineItems = function(acct) {
-        console.log('line items ', acct);
         $scope.lineItems = Data.getLineItems(acct);
         $scope.currAcct = acct;
     }
